@@ -9,7 +9,7 @@ Mathematically, the Levenshtein distance between two strings $a$ , $b$ (of lengt
 
 ![levenshtein formula](docs/levenshtein-formula.svg)
 
- ${\displaystyle 1_{(a_{i}\neq b_{j})}}$ is a function that equals 0 when $a_{i}=b_{j}$ and 1 otherwise.
+ ${\displaystyle 1_{(a_{i}\neq b_{j})}}$ is a function that equals 0 when $a_{i}=b_{j}$ and 1 otherwise.    
  $\operatorname{lev}_{a,b}(i,j)$ is the distance between the first $i$ characters of $a$ and the first $j$ characters of $b$.
 
 Note that the first element in the minimum corresponds to deletion (from $a$ to $b$), the second to insertion and the third to match or mismatch, depending on whether the respective symbols are the same.
