@@ -1,4 +1,4 @@
-from compute_levenshtein_distance import compute_levenshtein_distance as compute_dist
+import compute_distance_and_align.compute_levenshtein_distance as compute_dist
 
 def align_strings(seq1, seq2):
     '''
@@ -38,7 +38,7 @@ def align_strings(seq1, seq2):
 
     else:
 
-        shortest_dist, table, row, column = compute_dist(seq1, seq2)
+        shortest_dist, table, row, column = compute_dist.compute_levenshtein_distance(seq1, seq2)
 
         while True:
 
