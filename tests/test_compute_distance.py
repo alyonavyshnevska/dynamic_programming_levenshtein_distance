@@ -1,11 +1,11 @@
 import unittest
-from compute_levenshtein_distance.compute_levenshtein_distance import compute_levenshtein_distance as compute_distance
+from compute_distance_and_align.compute_levenshtein_distance import compute_levenshtein_distance as compute_distance
 
-class TestSum(unittest.TestCase):
+class TestDistance(unittest.TestCase):
 
     def test_sanity_check(self):
         """
-        Test that compute_levenshtein_distance produces the minimum number of edits
+        Test that compute_distance_and_align produces the minimum number of edits
         to convert str1 into str2 for a simple representative case
         """
 
@@ -16,7 +16,7 @@ class TestSum(unittest.TestCase):
 
     def test_trivial_case(self):
         """
-        Test that compute_levenshtein_distance produces the minimum number of edits
+        Test that compute_distance_and_align produces the minimum number of edits
         to convert str1 into str2 for a trivial case
         """
 
@@ -27,7 +27,7 @@ class TestSum(unittest.TestCase):
 
     def test_general(self):
         """
-        Test that compute_levenshtein_distance produces the minimum number of edits
+        Test that compute_distance_and_align produces the minimum number of edits
         to convert str1 into str2 for an elaborate representative case
         """
 
@@ -38,7 +38,7 @@ class TestSum(unittest.TestCase):
 
     def test_edge_case(self):
         """
-        Test that compute_levenshtein_distance produces the minimum number of edits
+        Test that compute_distance_and_align produces the minimum number of edits
         to convert str1 into str2 for an edge case (extreme normal)
         """
         str1 = ""
@@ -48,7 +48,7 @@ class TestSum(unittest.TestCase):
 
     def test_outside_normal(self):
         """
-        Test that compute_levenshtein_distance produces a Type Error when one of the parameters is of the
+        Test that compute_distance_and_align produces a Type Error when one of the parameters is of the
         wrong type
         """
 
