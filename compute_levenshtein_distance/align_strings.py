@@ -1,4 +1,6 @@
-def calculate_and_align(seq1, seq2):
+from compute_levenshtein_distance import compute_levenshtein_distance as compute_dist
+
+def align_strings(seq1, seq2):
     '''
     Calculates minimum edit distance between str1 and str2
     and saves backpointers to retrieve the allignments
@@ -36,53 +38,32 @@ def calculate_and_align(seq1, seq2):
 
     else:
 
-        # Create a table to store intermediate results
-        table = [[0 for x in range(len(seq1) + 1)] for x in range(len(seq2) + 1)]
-
-        for row in range(len(seq2) + 1):
-            for column in range(len(seq1) + 1):
-
-                if row == 0:
-                    table[row][column] = column
-
-                elif column == 0:
-                    table[row][column] = row
-
-                elif seq2[row - 1] == seq1[column - 1]:
-                    table[row][column] = table[row - 1][column - 1]
-
-                else:
-                    table[row][column] = 1 + min(table[row - 1][column - 1],
-                                                 table[row][column - 1],
-                                                 table[row - 1][column])
-
-        i = row  # to
-        j = column  # from
+        shortest_dist, table, row, column = compute_dist(seq1, seq2)
 
         while True:
 
-            if (i == 0 and j == 0):
+            if (row == 0 and column == 0):
                 break
 
             # Make sure that i or j haven't reached 0'th row or 0'th column
-            if i != 0 and j != 0 and seq2[i - 1] == seq1[j - 1]:
-                alignment += seq2[i - 1]
-                i = i - 1
-                j = j - 1
+            if row != 0 and column != 0 and seq2[row - 1] == seq1[column - 1]:
+                alignment += seq2[row - 1]
+                row = row - 1
+                column = column - 1
 
 
-            elif table[i][j] == (table[i - 1][j - 1] + 1):
-                alignment += seq2[i - 1].upper()
-                i = i - 1
-                j = j - 1
+            elif table[row][column] == (table[row - 1][column - 1] + 1):
+                alignment += seq2[row - 1].upper()
+                row = row - 1
+                column = column - 1
 
-            elif table[i][j] == (table[i - 1][j] + 1):
-                alignment += seq2[i - 1].upper()
-                i = i - 1
+            elif table[row][column] == (table[row - 1][column] + 1):
+                alignment += seq2[row - 1].upper()
+                row = row - 1
 
-            elif table[i][j] == (table[i][j - 1] + 1):
+            elif table[row][column] == (table[row][column - 1] + 1):
                 alignment += '-'
-                j = j - 1
+                column = column - 1
 
         distance = table[row][column]
         alignment = alignment[::-1]
@@ -92,3 +73,6 @@ def calculate_and_align(seq1, seq2):
           "\nChanges:", alignment)
 
     return distance, (seq1, alignment)
+
+if __name__ == "__main__":
+    align_strings('abcdef', 'azced')
