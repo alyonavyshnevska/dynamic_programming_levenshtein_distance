@@ -5,7 +5,7 @@ def align_strings(seq1, seq2):
     Calculates minimum edit distance between str1 and str2
     and saves backpointers to retrieve the allignments
 
-    :param srt seq1: from this string
+    :param srt seq1: from this s®tring
     :param srt seq2: into this string
 
     :returns: edit distance, a tuple of (seq1, changes)
@@ -68,11 +68,12 @@ def align_strings(seq1, seq2):
         distance = table[row][column]
         alignment = alignment[::-1]
 
-    print("\nFrom string: ", seq1, "\nto string:", seq2,
-          "\nMinimum edit distance:", distance,
-          "\nChanges:", alignment)
-
     return distance, (seq1, alignment)
 
 if __name__ == "__main__":
-    align_strings('abcdef', 'azced')
+    seq1 = 'abcdef'
+    seq2 = 'azced'
+    distance, alignment = align_strings('abcdef', 'azced')
+    print("\nFrom string: ", seq1, "\nto string:", seq2,
+          "\nMinimum edit distance:", distance,
+          "\nChanges:", alignment)
